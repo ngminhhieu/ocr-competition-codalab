@@ -1,0 +1,14 @@
+<h1><strong>Giới thiệu chung</strong></h1>
+<p>Chủ đề cuộc thi AI-challenge 2021 là "Trí tuệ nhân tạo cho nhận diện chữ trong ảnh". Trong cuộc thi này, mục tiêu đặt
+    ra là phát hiện (detect) và nhận diện (recognize) chữ trong ảnh, cụ thể ở đây sẽ tập trung vào chữ trong khung cảnh
+    (scene text) được thu lại từ nhiều nguồn camera khác nhau ở Việt Nam, cũng như thu thập từ google hình ảnh.</p>
+<p>Vấn đề đặt ra là một phần quan trong cho nhiều hệ thống thông minh hiện nay như robot, xe tự lái,... Các hệ thống này
+    yêu cầu hiểu được cảnh vật xung quanh và chữ trong cảnh vật nắm giữ rất nhiều thông tin quan trọng. Để tăng tính ứng
+    dụng thực tiễn của giải pháp, mô hình cần đáp ứng tốt được cả về độ chính xác cũng như về thời gian xử lý.</p>
+<p>Các đội thi cần nhận diện chữ trong ảnh, trong đó phần lớn là tiếng Việt và được thu thập từ nhiều khu vực khác nhau.
+    Hình ảnh chứa chữ có thể được chụp hoặc cắt ra từ video với nhãn được gán ở cấp độ tiếng. Cụ thể, từ "khe khẽ" sẽ
+    được coi là hai tiếng riêng biệt "khe" và "khẽ".</p>
+<p>Chữ trong hình ảnh được chia ra làm hai loại là dễ đọc và khó đọc. Cả hai loại chữ này đều được vẽ bounding box xung
+    quanh (Polygon 4 cạnh cho mỗi tiếng). Điểm khác nhau là chữ dễ đọc sẽ được gán kèm nhãn là chữ chứa trong bounding
+    box đó, trong khi các chữ khó đọc sẽ được gán nhãn là "###". Kết quả đánh giá cuối cùng chỉ dựa trên những chữ dễ
+    đọc. Ví dụ ở trong hình, chỉ những chữ bao gồm nhãn khác ### mới được sử dụng để đánh giá kết quả mô hình.</p>

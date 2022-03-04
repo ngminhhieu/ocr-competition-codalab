@@ -1,19 +1,22 @@
-title: AIHub Bundle Example
+title: Scene Text Localization And Recognition
 description: Some description here
-image: logo.png
+image: logo.svg
 has_registration: True
-end_date: 2020-11-30
+end_date: 2022-06-01
 html:
     overview: overview.html
-    evaluation: evaluation.html
-    terms: terms.html
+    award: award.html
+    tasks: tasks.html
     data: data.html
+    evaluation: evaluation.html
+    submission: submission.html
+    terms: terms.html
 phases:
     1:
         phasenumber: 1
         label: "Warm Up"
         color: green
-        start_date: 2020-10-21
+        start_date: 2022-04-01
         max_submissions: 10
         scoring_program: scoring_program.zip
         reference_data: warmup_ground_truth.zip
@@ -47,7 +50,6 @@ phases:
         max_submissions: 5
         scoring_program: scoring_program.zip
         reference_data: private_ground_truth.zip
-
 
 leaderboard:
     leaderboards:
