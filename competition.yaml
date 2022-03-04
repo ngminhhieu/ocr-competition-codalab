@@ -1,0 +1,62 @@
+title: AIHub Bundle Example
+description: Some description here
+image: logo.png
+has_registration: True
+end_date: 2020-11-30
+html:
+    overview: overview.html
+    evaluation: evaluation.html
+    terms: terms.html
+    data: data.html
+phases:
+    1:
+        phasenumber: 1
+        label: "Warm Up"
+        color: green
+        start_date: 2020-10-21
+        max_submissions: 10
+        scoring_program: scoring_program.zip
+        reference_data: warmup_ground_truth.zip
+        datasets:
+            1:
+                name: Training set
+                url: https://example.com/
+            2: 
+                name: Test set
+                url: https://example.com/
+    2:
+        phasenumber: 2
+        label: "Public Test"
+        color: yellow
+        start_date: 2020-10-26
+        max_submissions: 10
+        scoring_program: scoring_program.zip
+        reference_data: public_ground_truth.zip
+        datasets:
+            1:
+                name: Training set
+                url: https://example.com/
+            2: 
+                name: Test set
+                url: https://example.com/
+    3:
+        phasenumber: 3
+        label: "Private Test"
+        color: orange
+        start_date: 2020-11-28
+        max_submissions: 5
+        scoring_program: scoring_program.zip
+        reference_data: private_ground_truth.zip
+
+
+leaderboard:
+    leaderboards:
+        RESULTS: &RESULTS
+            label: Results
+            rank: 1
+    columns:
+        ROC:
+            leaderboard: *RESULTS
+            label: ROC
+            rank: 1
+            numeric_format: 1
