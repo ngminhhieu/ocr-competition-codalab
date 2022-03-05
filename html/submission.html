@@ -1,2 +1,11 @@
 <p><strong>Data Format</strong></p>
-<p>Write some description below. This can also be edited using the web interface after uploading the package</p>
+<p>Với mỗi hình ảnh được cung cấp tên file ảnh, đội thi cần xuất kết quả ra tệp văn bản dạng text có tên là tên file
+    ảnh.txt tương ứng.</p>
+<p style="padding-left: 30px;">Ví dụ: ảnh img_1.jpg thì cần xuất kết quả ra tệp img_1.jpg.txt</p>
+<p>Mỗi dòng của tệp kết quả sẽ biểu diễn cho một bounding box cùng nhãn của từ chứa trong bounding box đó. Ở đây
+    bounding box là một polygon 4 góc được biểu diễn bằng tọa độ của 4 điểm góc theo format:</p>
+<p style="padding-left: 30px;">x1,y1,x2,y2,x3,y3,x4,y4,Nhãn</p>
+<p>Thứ tự quy ước theo chiều kim đồng hồ (clockwise).</p>
+<p style="padding-left: 30px;">Ví dụ: 231,124,275,110,270, 130,230,133,An</p>
+<p>Tất cả các file kết quả đặt trong thư mục predicted, sau đó nén thư mục lại dưới dạng predicted.zip và nộp
+    lên hệ thống.</p>

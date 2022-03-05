@@ -6,7 +6,6 @@ end_date: 2022-06-01
 html:
     overview: overview.html
     award: award.html
-    tasks: tasks.html
     data: data.html
     evaluation: evaluation.html
     submission: submission.html
@@ -53,12 +52,20 @@ phases:
 
 leaderboard:
     leaderboards:
-        RESULTS: &RESULTS
-            label: Results
+        F1: &F1
+            label: Task 1 (F1)
+            rank: 2
+        CER: &CER
+            label: Task 2 (CER)
             rank: 1
     columns:
-        ROC:
-            leaderboard: *RESULTS
-            label: ROC
+        F1:
+            leaderboard: *F1
+            label: F1
+            rank: 2
+            sort: asc
+        CER:
+            leaderboard: *CER
+            label: CER
             rank: 1
-            numeric_format: 1
+            sort: asc
