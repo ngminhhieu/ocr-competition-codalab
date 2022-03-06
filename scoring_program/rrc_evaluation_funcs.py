@@ -54,7 +54,6 @@ def load_zip_file(file,fileNameRegExp='',allEntries=False):
         archive=zipfile.ZipFile(file, mode='r', allowZip64=True)
     except :
         raise Exception('Error loading the ZIP archive')    
-
     pairs = []
     for name in archive.namelist():
         addFile = True
@@ -73,7 +72,6 @@ def load_zip_file(file,fileNameRegExp='',allEntries=False):
         else:
             if allEntries:
                 raise Exception('ZIP entry not valid: %s' %name)             
-
     return dict(pairs)
 
 def decode_utf8(raw):

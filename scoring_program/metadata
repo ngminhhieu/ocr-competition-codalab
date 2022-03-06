@@ -1,2 +1,2 @@
-command: python $program/evaluate.py $input $output
+command: python3.6 $program/evaluate.py $input $output
 description: AIHub VN Bundle Example

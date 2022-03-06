@@ -4,7 +4,24 @@ from collections import namedtuple
 import rrc_evaluation_funcs
 import importlib
 import math
-import jiwer
+import subprocess
+import sys
+import os
+from cer import cer
+def install(package):
+    subprocess.call("apt-get install python3-dev", shell=True) # Gọi call thì phải có shell=True
+    subprocess.call("python3 -m pip install --upgrade pip", shell=True)
+    subprocess.call("pip3 install -U setuptools", shell=True) # pip hiểu là python2
+    subprocess.call("pip3 install -U wheel", shell=True) # check_call thì không được là dừng luôn tiến trình
+    subprocess.call("pip3 install {} --no-cache-dir".format(package), shell=True)
+    
+    # subprocess.check_call([sys.executable, "-m", "pip", "install", "-U setuptools"])
+    # subprocess.check_call([sys.executable, "-m", "pip", "install", "-U wheel"])
+    # subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# install("Polygon3")
+install("Polygon3")
+# import <my-package>
 
 def evaluation_imports():
     """
@@ -20,8 +37,8 @@ def default_evaluation_params():
     default_evaluation_params: Default parameters to use for the validation and evaluation.
     """
     return {
-            'AREA_RECALL_CONSTRAINT' : 0.4,
-            'AREA_PRECISION_CONSTRAINT' :0.4,
+            'AREA_RECALL_CONSTRAINT' : 0.5,
+            'AREA_PRECISION_CONSTRAINT' :0.5,
             'EV_PARAM_IND_CENTER_DIFF_THR': 1,
             'GT_SAMPLE_NAME_2_ID':'.*([0-9]+).*',
             'DET_SAMPLE_NAME_2_ID':'.*([0-9]+).*',
@@ -347,7 +364,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
             detFile = rrc_evaluation_funcs.decode_utf8(subm[resFile]) 
 
             pointsList,confidencesList,transcriptionsListSubm = rrc_evaluation_funcs.get_tl_line_values_from_file_contents(detFile,evaluationParams['DET_CRLF'],evaluationParams['DET_LTRB'],evaluationParams['TRANSCRIPTION'],evaluationParams['CONFIDENCES'])
-            cerAccum = jiwer.cer(transcriptionsListGt, transcriptionsListSubm)
+            cerAccum = cer(transcriptionsListGt, transcriptionsListSubm)
             for n in range(len(pointsList)):
                 points = pointsList[n]
                 

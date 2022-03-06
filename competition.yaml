@@ -13,24 +13,9 @@ html:
 phases:
     1:
         phasenumber: 1
-        label: "Warm Up"
-        color: green
-        start_date: 2022-04-01
-        max_submissions: 10
-        scoring_program: scoring_program.zip
-        reference_data: warmup_ground_truth.zip
-        datasets:
-            1:
-                name: Training set
-                url: https://example.com/
-            2: 
-                name: Test set
-                url: https://example.com/
-    2:
-        phasenumber: 2
         label: "Public Test"
         color: yellow
-        start_date: 2020-10-26
+        start_date: 2022-03-05
         max_submissions: 10
         scoring_program: scoring_program.zip
         reference_data: public_ground_truth.zip
@@ -41,11 +26,11 @@ phases:
             2: 
                 name: Test set
                 url: https://example.com/
-    3:
-        phasenumber: 3
+    2:
+        phasenumber: 2
         label: "Private Test"
         color: orange
-        start_date: 2020-11-28
+        start_date: 2022-04-05
         max_submissions: 5
         scoring_program: scoring_program.zip
         reference_data: private_ground_truth.zip
