@@ -5,23 +5,7 @@ import rrc_evaluation_funcs
 import importlib
 import math
 import subprocess
-import sys
-import os
 from cer import cer
-def install(package):
-    subprocess.call("apt-get install python3-dev", shell=True) # Gọi call thì phải có shell=True
-    subprocess.call("python3 -m pip install --upgrade pip", shell=True)
-    subprocess.call("pip3 install -U setuptools", shell=True) # pip hiểu là python2
-    subprocess.call("pip3 install -U wheel", shell=True) # check_call thì không được là dừng luôn tiến trình
-    subprocess.call("pip3 install {} --no-cache-dir".format(package), shell=True)
-    
-    # subprocess.check_call([sys.executable, "-m", "pip", "install", "-U setuptools"])
-    # subprocess.check_call([sys.executable, "-m", "pip", "install", "-U wheel"])
-    # subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-# install("Polygon3")
-install("Polygon3")
-# import <my-package>
 
 def evaluation_imports():
     """

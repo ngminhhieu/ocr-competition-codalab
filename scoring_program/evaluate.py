@@ -3,6 +3,10 @@ import os
 import sys
 import rrc_evaluation_funcs
 from script import default_evaluation_params, validate_data, evaluate_method
+import subprocess
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install("Polygon2")
 
 if __name__ == "__main__":
     [_, input_dir, output_dir] = sys.argv
@@ -31,4 +35,3 @@ if __name__ == "__main__":
     with open(os.path.join(output_dir, 'scores.txt'), 'w') as output_file:
         output_file.write("CER: {:f}\n".format(round(res_dict['method']['cer'],6)))
         output_file.write("F1: {:f}".format(round(res_dict['method']['hmean'],6)))
-    
