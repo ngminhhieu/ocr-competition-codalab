@@ -33,7 +33,6 @@ def default_evaluation_params():
             'CONFIDENCES': False, # Detections must include confidence value. AP will be calculated
             'TRANSCRIPTION': True, # Does prediction has transcription or not
             'PER_SAMPLE_RESULTS': True, # Generate per sample results and produce data for visualization
-            'IOU_CONSTRAINT': 0.5
             }
 
 def validate_data(gtFilePath, submFilePath,evaluationParams):
@@ -108,19 +107,8 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
             for i in range(len(p)):
                 pointMat.extend(p[i])
         return pointMat
-    
-    def get_union(pD, pG):
-        areaA = pD.area()
-        areaB = pG.area()
-        return areaA + areaB - get_intersection(pD, pG)
-
-    def get_intersection_over_union(pD, pG):
-        try:
-            return get_intersection(pD, pG) / get_union(pD, pG)
-        except:
-            return 0
-
-    def get_intersection(pD, pG):
+        
+    def get_intersection(pD,pG):
         pInt = pD & pG
         if len(pInt) == 0:
             return 0
@@ -282,7 +270,6 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
         hmean = 0    
         recallAccum = 0.
         precisionAccum = 0.
-        cerAccum = 0.
 
         detMatched = 0
         numGtCare = 0
@@ -301,8 +288,6 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
         # pseudo character centers
         gtCharPoints = []
         gtCharCounts = []
-        gtTrans = []
-        detTrans = []
         
         # visualization
         charCounts = np.zeros([1,1])
@@ -336,7 +321,6 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
             else:
                 gtPol = polygon_from_points(points)
             gtPols.append(gtPol)
-            gtTrans.append(transcription)
             if dontCare:
                 gtDontCarePolsNum.append( len(gtPols)-1 )
                 gtPolPoints.append(points)
@@ -366,7 +350,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
             # cerAccum = cer(transcriptionsListGt, transcriptionsListSubm)
             for n in range(len(pointsList)):
                 points = pointsList[n]
-                transcription = transcriptionsListSubm[n]
+                
                 if evaluationParams['DET_LTRB']:
                     detRect = Rectangle(*points)
                     detPol = rectangle_to_polygon(detRect)
@@ -375,7 +359,6 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                     detPol = polygon_from_points(points)                    
                 detPols.append(detPol)
                 detPolPoints.append(points)
-                detTrans.append(transcription)
                 
             evaluationLog += "DET polygons: " + str(len(detPols))
             
@@ -384,7 +367,6 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                 outputShape=[len(gtPols),len(detPols)]
                 recallMat = np.empty(outputShape)
                 precisionMat = np.empty(outputShape)
-                iouMat = np.empty(outputShape)
                 matchMat = np.zeros(outputShape)
                 gtRectMat = np.zeros(len(gtPols),np.int8)
                 detRectMat = np.zeros(len(detPols),np.int8)
@@ -398,23 +380,9 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                         intersected_area = get_intersection(pD,pG)
                         recallMat[gtNum,detNum] = 0 if pG.area()==0 else intersected_area / pG.area()
                         precisionMat[gtNum,detNum] = 0 if pD.area()==0 else intersected_area / pD.area()
-                        iouMat[gtNum, detNum] = get_intersection_over_union(pD, pG) # Text recgonition
                         detCharCounts.append(np.zeros(len(gtCharPoints[gtNum])))
                     gtCharCounts.append(detCharCounts)
-                
-
-                # Text recgonition
-                for gtNum in range(len(gtPols)):
-                    for detNum in range(len(detPols)):
-                        if (
-                            gtRectMat[gtNum] == 0
-                            and detRectMat[detNum] == 0
-                            and gtNum not in gtDontCarePolsNum
-                            and detNum not in detDontCarePolsNum
-                        ):
-                            if iouMat[gtNum, detNum] > evaluationParams["IOU_CONSTRAINT"]:
-                                cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
-
+                    
                 # Find detection Don't Care
                 if len(gtDontCarePolsNum)>0 :
                     for detNum in range(len(detPols)):
@@ -509,6 +477,9 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                     else:
                         precisionScore.append("")
 
+                for gtNum in range(len(gtRectMat)):
+                    cerAccum = cer(transcriptionsListGt, transcriptionsListSubm)
+
                 # Visualization
                 charCounts = np.zeros((len(gtRectMat), len(detRectMat)))
                 for gtNum in range(len(gtRectMat)):
@@ -578,7 +549,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
     methodPrecision = 0 if numGlobalCareDet == 0 else methodPrecisionSum/numGlobalCareDet
     methodHmean = 0 if methodRecall + methodPrecision==0 else 2* methodRecall * methodPrecision / (methodRecall + methodPrecision)
     
-    methodMetrics = {'recall':methodRecall, 'precision':methodPrecision, 'hmean':methodHmean, 'cer':methodCERSum/numGlobalCareDet, 'AP':AP  }
+    methodMetrics = {'recall':methodRecall, 'precision':methodPrecision, 'hmean':methodHmean, 'cer':methodCERSum/len(gt), 'AP':AP  }
     
     resDict = {'calculated':True,'Message':'','method': methodMetrics,'per_sample': perSampleMetrics}
     
