@@ -1,10 +1,13 @@
-<p><strong>Tiêu chí đánh giá</strong>&nbsp;</p>
-<p>Mỗi nhiệm vụ sẽ có từng tiêu chí đánh giá riêng, trong đó:</p>
+<p><strong>Ti&ecirc;u ch&iacute; đ&aacute;nh gi&aacute;</strong>&nbsp;</p>
+<p>Mỗi nhiệm vụ sẽ c&oacute; từng ti&ecirc;u ch&iacute; đ&aacute;nh gi&aacute; ri&ecirc;ng, trong đ&oacute;:</p>
 <ul>
-    <li>
-        F1-score: Dùng để đánh giá độ chính xác của nhiệm vụ "text localization".
-    </li>
-    <li>
-        CER: Dùng để đánh giá độ chính xác của nhiệm vụ "text detection".
-    </li>
+<li>F1-score: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ ph&aacute;t hiện chữ (text localization).&nbsp;</li>
+<li>CER: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ nhận diện chữ (text recognition)</li>
+</ul>
+<p>Kết quả cuối c&ugrave;ng sẽ được t&iacute;nh bằng tổng c&oacute; trọng số của F1 v&agrave; CER, cụ thể:&nbsp;<em>total_score = 0.5*F1 + 0.5*CER.</em></p>
+<p>Ch&uacute; th&iacute;ch:</p>
+<ul>
+<li>F1-score = 2* (Precision * Recall) / (Precision + Recall) với c&aacute;ch t&iacute;nh Precision, Recall, F1-score trong nhiệm vụ ph&aacute;t hiện chữ được tham khảo ở <a href="https://github.com/clovaai/TedEval">li&ecirc;n kết</a>&nbsp;n&agrave;y</li>
+<li>CER (Character Error Rate) đại diện cho phần trăm k&yacute; tự trong văn bản của tệp grouth truth bị dự đo&aacute;n <strong>kh&ocirc;ng ch&iacute;nh x&aacute;c.<br /></strong>CER = (S + D + I) / N, trong đ&oacute; S: số k&yacute; tự của prediciton bị sai so với groundtruth, D: số k&yacute; tự của prediction bị thiếu so với groudtruth, I: số k&yacute; tự của prediction cần th&ecirc;m v&agrave;o so với groundtruth, N: số k&yacute; tự của ground truth</li>
+<li>V&iacute; dụ: grouth truth: <strong>0</strong>320<strong>2</strong>2<strong>A</strong>BCD v&agrave; prediction: O320Z2BCD c&oacute; hai k&iacute; tự cần thay l&agrave;: O thay thế 0 v&agrave; Z thay thế 2, một k&iacute; tự bị thiếu l&agrave;: A bị thiếu, kh&ocirc;ng c&oacute; k&iacute; tự n&agrave;o cần th&ecirc;m. Do đ&oacute; S=2, D=1, I=0, CER = (2+1+0)/10= 0.3.</li>
 </ul>
