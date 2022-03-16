@@ -8,7 +8,7 @@ from zipfile import ZipFile
 from os.path import basename
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-# install("Polygon2")
+install("Polygon2")
 
 def zip_files(name, folder):
     if os.path.exists("{}/{}.zip".format(folder, name)):
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     [_, input_dir, output_dir] = sys.argv
     submission_dir = os.path.join(input_dir, 'res')
     truth_dir = os.path.join(input_dir, 'ref')
-    # zip_files('prediction', submission_dir)
+    zip_files('prediction', submission_dir)
     res_dict = rrc_evaluation_funcs.main_evaluation({'g': '{}/groundtruth.zip'.format(truth_dir), 's': '{}/prediction.zip'.format(submission_dir)}, default_evaluation_params, validate_data, evaluate_method)
     with open(os.path.join(output_dir, 'scores.txt'), 'w') as output_file:
         output_file.write("CER: {:f}\n".format(round(res_dict['method']['cer'], 4)))
