@@ -4,7 +4,7 @@
 <li>F1-score: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ ph&aacute;t hiện chữ (text localization).&nbsp;</li>
 <li>CER: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ nhận diện chữ (text recognition)</li>
 </ul>
-<p>Kết quả cuối c&ugrave;ng sẽ được t&iacute;nh bằng tổng c&oacute; trọng số của F1 v&agrave; CER, cụ thể:&nbsp;<em>total_score = 0.5*F1 + 0.5*CER.</em></p>
+<p>Kết quả cuối c&ugrave;ng sẽ được t&iacute;nh bằng tổng c&oacute; trọng số của F1 v&agrave; CER, cụ thể:&nbsp;<em>total_score = 0.5*F1 + 0.5*(1-CER).</em></p>
 <p>Ch&uacute; th&iacute;ch:</p>
 <ul>
 <li>F1-score = 2* (Precision * Recall) / (Precision + Recall) với c&aacute;ch t&iacute;nh Precision, Recall, F1-score trong nhiệm vụ ph&aacute;t hiện chữ được tham khảo ở <a href="https://github.com/clovaai/TedEval">li&ecirc;n kết</a>&nbsp;n&agrave;y</li>
