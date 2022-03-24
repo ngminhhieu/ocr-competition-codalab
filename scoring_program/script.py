@@ -6,7 +6,7 @@ import importlib
 import math
 import subprocess
 from cer import cer
-
+import Levenshtein as lstn
 def evaluation_imports():
     """
     evaluation_imports: Dictionary ( key = module name , value = alias  )  with python modules used in the evaluation. 
@@ -413,7 +413,14 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                             and detNum not in detDontCarePolsNum
                         ):
                             if iouMat[gtNum, detNum] > evaluationParams["IOU_CONSTRAINT"]:
-                                cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
+                                gtRectMat[gtNum] = 1  # update
+                                detRectMat[detNum] = 1 # update
+                                # print(gtTrans[gtNum], " ", detTrans[detNum])
+                                # print(lstn.distance(gtTrans[gtNum], detTrans[detNum]))
+                                # print(cer(gtTrans[gtNum], detTrans[detNum]))
+                                # cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
+                                cerAccum += cer(gtTrans[gtNum], detTrans[detNum]) #update
+
 
                 # Find detection Don't Care
                 if len(gtDontCarePolsNum)>0 :

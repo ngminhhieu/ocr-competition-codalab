@@ -9,6 +9,7 @@ from os.path import basename
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install("Polygon2")
+install("python-Levenshtein")
 
 def zip_files(name, folder):
     if os.path.exists("{}/{}.zip".format(folder, name)):

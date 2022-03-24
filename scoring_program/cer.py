@@ -1,5 +1,6 @@
+from __future__ import division
 import argparse
-
+import Levenshtein as lstn
 def levenshtein(u, v):
     prev = None
     curr = [0] + list(range(1, len(v) + 1))
@@ -28,14 +29,23 @@ def levenshtein(u, v):
 
 
 def cer(gt, prediction):
-    cer_s, cer_i, cer_d, cer_n = 0, 0, 0, 0
-    for n in range(len(gt)):
-        _, (s, i, d) = levenshtein(gt[n], prediction[n])
-        cer_s += s
-        cer_i += i
-        cer_d += d
-        cer_n += len(gt[n])
+    cer_s, cer_i, cer_d, cer_n = 0, 0, 0, 0.
 
-    # if cer_n > 0:
-    #     print('CER: %g%%' % ((100.0 * (cer_s + cer_i + cer_d)) / cer_n))
+    arr = lstn.editops(gt, prediction) # update
+    # print(arr)
+    for item in arr:
+        if item[0] == 'insert':
+            cer_i += 1
+        elif item[0] == 'delete':
+            cer_d += 1
+        else:
+            cer_s += 1
+    cer_n = len(gt)
+        
+    # for n in range(len(gt)):
+    #     _, (s, i, d) = levenshtein(gt[n], prediction[n])
+    #     cer_s += s
+    #     cer_i += i
+    #     cer_d += d
+    #     cer_n += len(gt[n])
     return (cer_s + cer_i + cer_d) / cer_n
