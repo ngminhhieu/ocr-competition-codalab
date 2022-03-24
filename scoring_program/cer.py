@@ -1,5 +1,9 @@
 from __future__ import division
-import argparse
+import subprocess
+import sys
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install("python-Levenshtein")
 import Levenshtein as lstn
 def levenshtein(u, v):
     prev = None
