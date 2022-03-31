@@ -1,42 +1,42 @@
 <h1><strong>Giới thiệu chung</strong></h1>
-<p><em><strong>Chủ đề.&nbsp;</strong></em><strong>&nbsp;</strong>Chủ đề cuộc thi&nbsp;Scene Text Localization And Recognition l&agrave; "Ph&aacute;t hiện v&agrave; nhận diện chữ trong ảnh khung cảnh".</p>
-<p><em><strong>Nhiệm vụ.&nbsp;</strong></em>Trong cuộc thi n&agrave;y, c&oacute; 2 nhiệm vụ: Ph&aacute;t hiện chữ (Text localization) , Nhận diện chữ (Text recognition).&nbsp;C&aacute;c đội thi sẽ đưa ra c&aacute;c giải ph&aacute;p ph&aacute;t hiện v&agrave; nhận diện chữ trong khung cảnh (scene text). Dữ liệu được thu thập từ google h&igrave;nh ảnh, video, trang web, chụp ảnh.</p>
-<p>Chữ trong h&igrave;nh ảnh được chia ra l&agrave;m hai loại l&agrave; dễ đọc v&agrave; kh&oacute; đọc. Cả hai loại chữ n&agrave;y đều được vẽ bounding box xung quanh (Polygon 4 cạnh cho mỗi chữ). Đối với chữ dễ đọc được g&aacute;n nh&atilde;n l&agrave; chữ nằm trong bounding box, đối với chữ kh&oacute; đọc được g&aacute;n nh&atilde;n ###. Kết quả đ&aacute;nh gi&aacute; cuối c&ugrave;ng t&iacute;nh to&aacute;n dựa tr&ecirc;n những chữ dễ đọc.</p>
-<p><em><strong>Định dạng của dữ liệu.</strong></em> (chi tiết xem tại phần&nbsp;<span style="text-decoration: underline;">Hướng dẫn nộp kết quả</span>)</p>
-<p>Với mỗi ảnh t&ecirc;n img_{num}.jpg, đội thi cần xuất kết ra file .txt. T&ecirc;n file .txt sẽ c&oacute; định dạng res_img_{num}.txt trong đ&oacute; num l&agrave; số thứ tự của ảnh.</p>
-<p>V&iacute; dụ: ảnh&nbsp;<strong>img_1</strong>.jpg th&igrave; cần xuất kết quả ra tệp&nbsp;<strong>res_img_1</strong>.txt</p>
-<p>Mỗi d&ograve;ng của tệp kết quả .txt sẽ biểu diễn cho một bounding box (tọa độ 4 điểm) v&agrave; nh&atilde;n của chữ chứa trong bounding box đ&oacute;. Định dạng như sau:&nbsp;</p>
+<p><em><strong>Chủ đề. </strong></em><strong> </strong>Chủ đề cuộc thi Scene Text Localization And Recognition là "Phát hiện và nhận diện chữ trong ảnh khung cảnh".</p>
+<p><em><strong>Nhiệm vụ. </strong></em>Trong cuộc thi này, có 2 nhiệm vụ: Phát hiện chữ (Text localization) , Nhận diện chữ (Text recognition). Các đội thi sẽ đưa ra các giải pháp phát hiện và nhận diện chữ trong khung cảnh (scene text). Dữ liệu được thu thập từ google hình ảnh, video, trang web, chụp ảnh.</p>
+<p>Chữ trong hình ảnh được chia ra làm hai loại là dễ đọc và khó đọc. Cả hai loại chữ này đều được vẽ bounding box xung quanh (Polygon 4 cạnh cho mỗi chữ). Đối với chữ dễ đọc được gán nhãn là chữ nằm trong bounding box, đối với chữ khó đọc được gán nhãn ###. Kết quả đánh giá cuối cùng tính toán dựa trên những chữ dễ đọc.</p>
+<p><em><strong>Định dạng của dữ liệu.</strong></em> (chi tiết xem tại phần <span style="text-decoration: underline;">Hướng dẫn nộp kết quả</span>)</p>
+<p>Với mỗi ảnh tên img_{num}.jpg, đội thi cần xuất kết ra file .txt. Tên file .txt sẽ có định dạng res_img_{num}.txt trong đó num là số thứ tự của ảnh.</p>
+<p>Ví dụ: ảnh <strong>img_1</strong>.jpg thì cần xuất kết quả ra tệp <strong>res_img_1</strong>.txt</p>
+<p>Mỗi dòng của tệp kết quả .txt sẽ biểu diễn cho một bounding box (tọa độ 4 điểm) và nhãn của chữ chứa trong bounding box đó. Định dạng như sau: </p>
 <ul>
-<li>&nbsp;x1,y1,x2,y2,x3,y3,x4,y4,Nh&atilde;n</li>
+<li> x1,y1,x2,y2,x3,y3,x4,y4,Nhãn</li>
 </ul>
-<p><em><strong>Ti&ecirc;u ch&iacute; đ&aacute;nh</strong><strong> gi&aacute;.</strong></em>&nbsp;C&oacute; 2 ti&ecirc;u ch&iacute; đ&aacute;nh gi&aacute; (chi tiết xem tại phần <span style="text-decoration: underline;">Đ&aacute;nh gi&aacute;</span>)</p>
+<p><em><strong>Tiêu chí đánh</strong><strong> giá.</strong></em> Có 2 tiêu chí đánh giá (chi tiết xem tại phần <span style="text-decoration: underline;">Đánh giá</span>)</p>
 <ul>
-<li>F1-score: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ ph&aacute;t hiện chữ (text localization).&nbsp;</li>
-<li>CER: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ nhận diện chữ (text recognition)</li>
-<li>Kết quả cuối c&ugrave;ng sẽ được t&iacute;nh bằng tổng c&oacute; trọng số của F1 v&agrave; CER, cụ thể:&nbsp;<em>total_score = 0.5*F1 + 0.5*(1-CER).</em></li>
+<li>F1-score: Dùng để đánh giá độ chính xác của nhiệm vụ phát hiện chữ (text localization). </li>
+<li>CER: Dùng để đánh giá độ chính xác của nhiệm vụ nhận diện chữ (text recognition)</li>
+<li>Kết quả cuối cùng sẽ được tính bằng tổng có trọng số của F1 và CER, cụ thể: <em>total_score = 0.5*F1 + 0.5*(1-CER).</em></li>
 </ul>
-<p><em><strong>Scene Text Localization And Recognition&nbsp;Challenge</strong></em> sẽ được diễn ra với 2 giai đoạn: giai đoạn <strong>Public Test</strong>&nbsp;v&agrave; giai đoạn <strong>Private Test</strong>:</p>
+<p><em><strong>Scene Text Localization And Recognition Challenge</strong></em> sẽ được diễn ra với 2 giai đoạn: giai đoạn <strong>Public Test</strong> và giai đoạn <strong>Private Test</strong>:</p>
 <ul>
-<li>Giai đoạn <strong>Public Test (01/04/2022 - 01/05/2022)</strong>: diễn ra trong v&ograve;ng <strong>30 ng&agrave;y</strong>, nhằm lan tỏa th&ocirc;ng tin tới to&agrave;n bộ cộng đồng IT &amp; AI tại Việt Nam, từ đ&oacute; gi&uacute;p cộng đồng c&oacute; thời gian tiếp cận với c&aacute;c hướng xử l&yacute; b&agrave;i to&aacute;n. Đồng thời, trong thời gian n&agrave;y, c&aacute;c đội thi sẽ được tiếp cận với dữ liệu thực tế, huấn luyện m&ocirc; h&igrave;nh v&agrave; đ&aacute;nh gi&aacute; m&ocirc; h&igrave;nh th&ocirc;ng qua hệ thống đ&aacute;nh gi&aacute; tự động.&nbsp;Số lần nộp b&agrave;i tối đa l&agrave; 20 lần trong 1 ng&agrave;y.<br />Dữ liệu trong v&ograve;ng Public Test bao gồm 200 ảnh để đ&aacute;nh gi&aacute;&nbsp;</li>
+<li>Giai đoạn <strong>Public Test (01/04/2022 - 01/05/2022)</strong>: diễn ra trong vòng <strong>30 ngày</strong>, nhằm lan tỏa thông tin tới toàn bộ cộng đồng IT &amp; AI tại Việt Nam, từ đó giúp cộng đồng có thời gian tiếp cận với các hướng xử lý bài toán. Đồng thời, trong thời gian này, các đội thi sẽ được tiếp cận với dữ liệu thực tế, huấn luyện mô hình và đánh giá mô hình thông qua hệ thống đánh giá tự động. Số lần nộp bài tối đa là 20 lần trong 1 ngày.<br />Dữ liệu trong vòng Public Test bao gồm 200 ảnh để đánh giá </li>
 </ul>
 <ul>
-<li>Giai đoạn <strong>Private Test</strong><strong>&nbsp;(01/05/2022 - 02/05/2022)</strong>: diễn ra trong v&ograve;ng <strong>01</strong>&nbsp;<strong>ng&agrave;y</strong>.&nbsp;Trong giai đoạn n&agrave;y, c&aacute;c đội thi sẽ nộp kết quả cuối c&ugrave;ng sử dụng m&ocirc; h&igrave;nh đ&atilde; được huấn luyện sẵn ở giải đoạn&nbsp;<strong>Public Test</strong>. Số lần nộp b&agrave;i tối đa l&agrave; <strong>5</strong> <strong>lần</strong>.</li>
+<li>Giai đoạn <strong>Private Test</strong><strong> (01/05/2022 - 02/05/2022)</strong>: diễn ra trong vòng <strong>01</strong> <strong>ngày</strong>. Trong giai đoạn này, các đội thi sẽ nộp kết quả cuối cùng sử dụng mô hình đã được huấn luyện sẵn ở giải đoạn <strong>Public Test</strong>. Số lần nộp bài tối đa là <strong>5 lần</strong>.</li>
 </ul>
-<p><strong><em>Dữ liệu.</em></strong><em>&nbsp;</em>Dữ liệu&nbsp;gồm 3 tập: Dữ liệu huấn luyện gồm 1500 ảnh (trong đ&oacute; 1000 ảnh được cung cấp bởi VinAI[1] v&agrave; 500 ảnh cung cấp bởi trung t&acirc;m BK.AI), dữ liệu kiểm thử cho giai đoạn Public Test gồm 200 ảnh, v&agrave; dữ liệu kiểm thử cho giai đoạn Private Test gồm 300 ảnh.</p>
+<p><strong><em>Dữ liệu.</em></strong><em> </em>Dữ liệu gồm 3 tập: Dữ liệu huấn luyện gồm 1500 ảnh (trong đó 1000 ảnh được cung cấp bởi VinAI[1] và 500 ảnh cung cấp bởi trung tâm BK.AI), dữ liệu kiểm thử cho giai đoạn Public Test gồm 200 ảnh, và dữ liệu kiểm thử cho giai đoạn Private Test gồm 300 ảnh.</p>
 <p><em><strong>Mốc thời gian quan trọng</strong></em></p>
 <ul>
-<li><span style="text-decoration: line-through;"><strong>22 th&aacute;ng 6, 2021</strong>: Bắt đầu c&ocirc;ng bố cuộc thi tr&ecirc;n c&aacute;c phương tiện truyền th&ocirc;ng</span></li>
-<li><span style="text-decoration: line-through;"><strong>23 th&aacute;ng 6, 2021</strong>: Bắt đầu v&ograve;ng Public Test - Giai đoạn Khởi động</span></li>
-<li><span style="text-decoration: line-through;"><strong>28 th&aacute;ng 6, 2021</strong>: Hạn đăng k&iacute; tham gia v&agrave; s&aacute;p nhập đội thi Giai đoạn Khởi động</span></li>
-<li><span style="text-decoration: line-through;"><strong>29 th&aacute;ng 6, 2021</strong>: Bắt đầu Bắt đầu v&ograve;ng Private Test - Giai đoạn Khởi động</span></li>
-<li><span style="text-decoration: line-through;"><strong>01 th&aacute;ng 7, 2021 23:59:59 (GMT +07)</strong>: Kết th&uacute;c Private Test - Giai đoạn Khởi động</span></li>
-<li><span style="text-decoration: line-through;"><strong>02 th&aacute;ng 07, 2021 - 27 th&aacute;ng 07, 2021</strong>: B&aacute;o c&aacute;o giải ph&aacute;p v&agrave; trao giải Giai đoạn Khởi động</span></li>
-<li><span style="text-decoration: line-through;"><strong>28 th&aacute;ng 7, 2021</strong>: Bắt đầu v&ograve;ng Public Test - Giai đoạn Về đ&iacute;ch</span> (Hạn cũ: <s>19</s><s> th&aacute;ng 7, 2021</s>)</li>
-<li><strong>07 th&aacute;ng 08, 2021</strong>: Hạn đăng k&iacute; tham gia Giai đoạn Về đ&iacute;ch (Hạn cũ: <s>29 th&aacute;ng 7, 2021</s>)</li>
-<li><strong>14 th&aacute;ng 08, 2021</strong>: Hạn s&aacute;p nhập đội thi v&agrave; đăng k&iacute; pre-trained model (Hạn cũ: <s>05 th&aacute;ng 8, 2021</s>)</li>
-<li><strong>24 th&aacute;ng 08, 2021</strong>: Bắt đầu v&ograve;ng Private Test - Giai đoạn Về đ&iacute;ch (Hạn cũ: <s>15 th&aacute;ng 8, 2021</s>)</li>
-<li><strong>28 th&aacute;ng 08, 2021&nbsp;<strong>23:59:59 (GMT +07)</strong></strong>: Kết th&uacute;c cuộc thi (Hạn cũ: <s>20 th&aacute;ng 8, 2021</s>)</li>
-<li><strong>Lễ trao giải:</strong> Sẽ c&ocirc;ng bố trong thời gian tới</li>
+<li><span style="text-decoration: line-through;"><strong>22 tháng 6, 2021</strong>: Bắt đầu công bố cuộc thi trên các phương tiện truyền thông</span></li>
+<li><span style="text-decoration: line-through;"><strong>23 tháng 6, 2021</strong>: Bắt đầu vòng Public Test - Giai đoạn Khởi động</span></li>
+<li><span style="text-decoration: line-through;"><strong>28 tháng 6, 2021</strong>: Hạn đăng kí tham gia và sáp nhập đội thi Giai đoạn Khởi động</span></li>
+<li><span style="text-decoration: line-through;"><strong>29 tháng 6, 2021</strong>: Bắt đầu Bắt đầu vòng Private Test - Giai đoạn Khởi động</span></li>
+<li><span style="text-decoration: line-through;"><strong>01 tháng 7, 2021 23:59:59 (GMT +07)</strong>: Kết thúc Private Test - Giai đoạn Khởi động</span></li>
+<li><span style="text-decoration: line-through;"><strong>02 tháng 07, 2021 - 27 tháng 07, 2021</strong>: Báo cáo giải pháp và trao giải Giai đoạn Khởi động</span></li>
+<li><span style="text-decoration: line-through;"><strong>28 tháng 7, 2021</strong>: Bắt đầu vòng Public Test - Giai đoạn Về đích</span> (Hạn cũ: <s>19</s><s> tháng 7, 2021</s>)</li>
+<li><strong>07 tháng 08, 2021</strong>: Hạn đăng kí tham gia Giai đoạn Về đích (Hạn cũ: <s>29 tháng 7, 2021</s>)</li>
+<li><strong>14 tháng 08, 2021</strong>: Hạn sáp nhập đội thi và đăng kí pre-trained model (Hạn cũ: <s>05 tháng 8, 2021</s>)</li>
+<li><strong>24 tháng 08, 2021</strong>: Bắt đầu vòng Private Test - Giai đoạn Về đích (Hạn cũ: <s>15 tháng 8, 2021</s>)</li>
+<li><strong>28 tháng 08, 2021 <strong>23:59:59 (GMT +07)</strong></strong>: Kết thúc cuộc thi (Hạn cũ: <s>20 tháng 8, 2021</s>)</li>
+<li><strong>Lễ trao giải:</strong> Sẽ công bố trong thời gian tới</li>
 </ul>
-<p><strong><em>Tr&iacute;ch dẫn v&agrave; t&agrave;i liệu tham khảo</em></strong></p>
-<p>[1]&nbsp;N. Nguyen et al., "Dictionary-guided Scene Text Recognition," 2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2021, pp. 7379-7388, doi: 10.1109/CVPR46437.2021.00730.</p>
+<p><strong><em>Trích dẫn và tài liệu tham khảo</em></strong></p>
+<p>[1] N. Nguyen et al., "Dictionary-guided Scene Text Recognition," 2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2021, pp. 7379-7388, doi: 10.1109/CVPR46437.2021.00730.</p>

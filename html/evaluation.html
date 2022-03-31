@@ -1,13 +1,13 @@
-<p><strong>Ti&ecirc;u ch&iacute; đ&aacute;nh gi&aacute;</strong>&nbsp;</p>
-<p>Mỗi nhiệm vụ sẽ c&oacute; từng ti&ecirc;u ch&iacute; đ&aacute;nh gi&aacute; ri&ecirc;ng, trong đ&oacute;:</p>
+<p><strong>Tiêu chí đánh giá</strong></p>
+<p>Mỗi nhiệm vụ sẽ có từng tiêu chí đánh giá riêng, trong đó:</p>
 <ul>
-<li>F1-score: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ ph&aacute;t hiện chữ (text localization).&nbsp;</li>
-<li>CER: D&ugrave;ng để đ&aacute;nh gi&aacute; độ ch&iacute;nh x&aacute;c của nhiệm vụ nhận diện chữ (text recognition)</li>
+<li>F1-score: Dùng để đánh giá độ chính xác của nhiệm vụ phát hiện chữ (text localization).</li>
+<li>CER: Dùng để đánh giá độ chính xác của nhiệm vụ nhận diện chữ (text recognition)</li>
 </ul>
-<p>Kết quả cuối c&ugrave;ng sẽ được t&iacute;nh bằng tổng c&oacute; trọng số của F1 v&agrave; CER, cụ thể:&nbsp;<em>total_score = 0.5*F1 + 0.5*(1-CER).</em></p>
-<p>Ch&uacute; th&iacute;ch:</p>
+<p>Kết quả cuối cùng sẽ được tính bằng tổng có trọng số của F1 và CER, cụ thể: <em>total_score = 0.5*F1 + 0.5*(1-CER).</em></p>
+<p>Chú thích:</p>
 <ul>
-<li>F1-score = 2* (Precision * Recall) / (Precision + Recall) với c&aacute;ch t&iacute;nh Precision, Recall, F1-score trong nhiệm vụ ph&aacute;t hiện chữ được tham khảo ở <a href="https://github.com/clovaai/TedEval">li&ecirc;n kết</a>&nbsp;n&agrave;y</li>
-<li>CER (Character Error Rate) đại diện cho phần trăm k&yacute; tự trong văn bản của tệp grouth truth bị dự đo&aacute;n <strong>kh&ocirc;ng ch&iacute;nh x&aacute;c.<br /></strong>CER = (S + D + I) / N, trong đ&oacute; S: số k&yacute; tự của prediciton bị sai so với groundtruth, D: số k&yacute; tự của prediction bị thiếu so với groudtruth, I: số k&yacute; tự của prediction cần th&ecirc;m v&agrave;o so với groundtruth, N: số k&yacute; tự của ground truth</li>
-<li>V&iacute; dụ: grouth truth: <strong>0</strong>320<strong>2</strong>2<strong>A</strong>BCD v&agrave; prediction: O320Z2BCD c&oacute; hai k&iacute; tự cần thay l&agrave;: O thay thế 0 v&agrave; Z thay thế 2, một k&iacute; tự bị thiếu l&agrave;: A bị thiếu, kh&ocirc;ng c&oacute; k&iacute; tự n&agrave;o cần th&ecirc;m. Do đ&oacute; S=2, D=1, I=0, CER = (2+1+0)/10= 0.3.</li>
+<li>F1-score = 2* (Precision * Recall) / (Precision + Recall) với cách tính Precision, Recall, F1-score trong nhiệm vụ phát hiện chữ được tham khảo ở <a href="https://github.com/clovaai/TedEval">liên kết</a> này</li>
+<li>CER (Character Error Rate) đại diện cho phần trăm ký tự trong văn bản của tệp grouth truth bị dự đoán <strong>không chính xác.<br /></strong>CER = (S + D + I) / N, trong đó S: số ký tự của prediciton bị sai so với groundtruth, D: số ký tự của prediction bị thiếu so với groudtruth, I: số ký tự của prediction cần thêm vào so với groundtruth, N: số ký tự của ground truth</li>
+<li>Ví dụ: grouth truth: <strong>0</strong>320<strong>2</strong>2<strong>A</strong>BCD và prediction: O320Z2BCD có hai kí tự cần thay là: O thay thế 0 và Z thay thế 2, một kí tự bị thiếu là: A bị thiếu, không có kí tự nào cần thêm. Do đó S=2, D=1, I=0, CER = (2+1+0)/10= 0.3.</li>
 </ul>
