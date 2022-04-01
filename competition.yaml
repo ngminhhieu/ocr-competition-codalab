@@ -1,11 +1,10 @@
-title: Scene Text Localization And Recognition
-description: Some description here
+title: BKAI-NAVER Challenge 2022 - Scene Text Localization And Recognition
+description: Cuộc thi nhằm thúc đẩy ứng dụng và phát triển các kỹ thuật trí tuệ nhân tạo trong phát hiện và nhận dạng văn bản trên các ảnh khung cảnh (in-the-wind).
 image: logo.svg
 has_registration: True
-end_date: 2022-06-01
+end_date: 2022-05-31
 html:
     overview: overview.html
-    # award: award.html
     data: data.html
     evaluation: evaluation.html
     submission: submission.html
@@ -15,40 +14,27 @@ phases:
         phasenumber: 1
         label: "Public Test"
         color: yellow
-        start_date: 2022-03-05
-        max_submissions: 10
+        start_date: 2022-04-01
+        max_submissions: 999
+        max_submissions_per_day: 10
         scoring_program: scoring_program.zip
         reference_data: public_ground_truth.zip
-        datasets:
-            1:
-                name: Training set
-                url: https://example.com/
-            2: 
-                name: Test set
-                url: https://example.com/
     2:
         phasenumber: 2
         label: "Private Test"
         color: orange
-        start_date: 2022-04-05
-        max_submissions: 5
+        start_date: 2022-05-21 5:00:00
+        max_submissions: 999
+        max_submissions_per_day: 5
         scoring_program: scoring_program.zip
         reference_data: private_ground_truth.zip
 
 leaderboard:
     leaderboards:
-        F1: &F1
-            label: Task 1 (F1)
-            rank: 2
         CER: &CER
-            label: Task 2 (CER)
+            label: CER
             rank: 1
     columns:
-        F1:
-            leaderboard: *F1
-            label: F1
-            rank: 2
-            sort: asc
         CER:
             leaderboard: *CER
             label: CER
