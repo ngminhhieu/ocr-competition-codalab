@@ -5,7 +5,7 @@ has_registration: True
 end_date: 2022-06-01
 html:
     overview: overview.html
-    award: award.html
+    # award: award.html
     data: data.html
     evaluation: evaluation.html
     submission: submission.html

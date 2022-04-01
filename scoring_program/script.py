@@ -303,7 +303,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
         gtCharCounts = []
         gtTrans = []
         detTrans = []
-        
+        # text recognition
         # visualization
         charCounts = np.zeros([1,1])
         recallScore = list()
@@ -402,8 +402,14 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                         detCharCounts.append(np.zeros(len(gtCharPoints[gtNum])))
                     gtCharCounts.append(detCharCounts)
                 
-
+                #update
                 # Text recgonition
+                match_bbox_count = 0 
+                gt_Care_bbox = 0 
+                for gtNum in range(len(gtPols)):
+                    if (gtNum not in gtDontCarePolsNum):
+                        gt_Care_bbox += 1
+                ##########
                 for gtNum in range(len(gtPols)):
                     for detNum in range(len(detPols)):
                         if (
@@ -413,6 +419,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                             and detNum not in detDontCarePolsNum
                         ):
                             if iouMat[gtNum, detNum] > evaluationParams["IOU_CONSTRAINT"]:
+                                match_bbox_count += 1 #update
                                 gtRectMat[gtNum] = 1  # update
                                 detRectMat[detNum] = 1 # update
                                 # print(gtTrans[gtNum], " ", detTrans[detNum])
@@ -420,8 +427,9 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                                 # print(cer(gtTrans[gtNum], detTrans[detNum]))
                                 # cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
                                 cerAccum += cer(gtTrans[gtNum], detTrans[detNum]) #update
-
-
+                # update
+                if gt_Care_bbox > match_bbox_count:
+                    cerAccum += (gt_Care_bbox - match_bbox_count)
                 # Find detection Don't Care
                 if len(gtDontCarePolsNum)>0 :
                     for detNum in range(len(detPols)):
@@ -584,8 +592,7 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
     methodRecall = 0 if numGlobalCareGt == 0 else methodRecallSum/numGlobalCareGt
     methodPrecision = 0 if numGlobalCareDet == 0 else methodPrecisionSum/numGlobalCareDet
     methodHmean = 0 if methodRecall + methodPrecision==0 else 2* methodRecall * methodPrecision / (methodRecall + methodPrecision)
-    
-    methodMetrics = {'recall':methodRecall, 'precision':methodPrecision, 'hmean':methodHmean, 'cer':methodCERSum/numGlobalCareDet, 'AP':AP  }
+    methodMetrics = {'recall':methodRecall, 'precision':methodPrecision, 'hmean':methodHmean, 'cer':methodCERSum /numGlobalCareGt, 'AP':AP  }
     
     resDict = {'calculated':True,'Message':'','method': methodMetrics,'per_sample': perSampleMetrics}
     
