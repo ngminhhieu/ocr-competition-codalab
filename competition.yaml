@@ -1,4 +1,4 @@
-title: BKAI-NAVER Challenge 2022 - Scene Text Localization And Recognition
+title: BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition
 description: Cuộc thi nhằm thúc đẩy ứng dụng và phát triển các kỹ thuật trí tuệ nhân tạo trong phát hiện và nhận dạng văn bản trên các ảnh khung cảnh (in-the-wind).
 image: logo.svg
 has_registration: True
@@ -32,7 +32,7 @@ phases:
 leaderboard:
     leaderboards:
         CER: &CER
-            label: CER
+            label: Final Score
             rank: 1
     columns:
         CER:

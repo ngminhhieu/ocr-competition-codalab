@@ -4,12 +4,12 @@
     CER càng thấp thì mô hình nhận diện càng chính xác.
     
 </p>
-<p>CER được tính theo công thức: <em>\[CER=\frac{S+D+I}{N}\]</em>,</p>
-<script type="text/javascript" src="https://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+<p>CER được tính theo công thức:</p>
+<p><img src="https://raw.githubusercontent.com/ngminhhieu/bkai-challenge-public-materials/main/cer.svg" alt="" width="114" height="34" /></p>
 <p>trong đó S: số ký tự của prediciton bị sai so với groundtruth, D: số ký tự của prediction bị thiếu so với groudtruth, I: số ký tự của prediction cần thêm vào so với groundtruth, N: số ký tự của groundtruth</p>
 <p><strong>Ví dụ:</strong> grouthtruth là <strong>032022A</strong>BCD và kết quả nhận diện bởi mô hình là O320Z2BCD có hai kí tự cần thay là: O thay thế 0 và Z thay thế 2 , một kí tự bị thiếu là: A bị thiếu, và không có kí tự nào cần thêm. Do đó S=2, D=1, I=0, CER = (2+1+0)/10= 0.3.</p> 
-<p>Điểm số cuối cùng sau khi các đội thi nộp kết quả lên hệ thống là: \[\frac{1}{n+m}\sum_{i=1}^n\sum_{j=1}^{m_i}CER_{ij}\]</p>
-<script type="text/javascript" src="https://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+<p>Điểm số cuối cùng sau khi các đội thi nộp kết quả lên hệ thống là:</p>
+<p><img src="https://raw.githubusercontent.com/ngminhhieu/bkai-challenge-public-materials/main/final_score.svg" alt="" width="168" height="47" /></p>
 <p>Trong đó:</p>
 <ul>
     <li><em>n</em> là số file .txt (tương ứng với số ảnh đầu vào cần nhận diện),</li>
