@@ -1,3 +1,3 @@
 rm scoring_program.zip
-
-zip -j scoring_program.zip ./scoring_program/*.py
+rm scoring_program/*.pyc
+zip -j scoring_program.zip ./scoring_program/*
