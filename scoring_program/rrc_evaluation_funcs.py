@@ -65,6 +65,9 @@ def load_zip_file(file,fileNameRegExp='',allEntries=False):
             # else:
             #     if len(m.groups())>0:
             #         keyName = m.group(1)
+        if name.find("res") == -1 and name.find("gt") == -1:
+            print("Please check the file name in submission file and read the instruction carefully!")
+            exit()
         keyName = name.replace('gt_', '').replace('res_', '').replace('.txt', '')
         
         if addFile:

@@ -45,7 +45,11 @@ def validate_data(gtFilePath, submFilePath,evaluationParams):
     gt = rrc_evaluation_funcs.load_zip_file(gtFilePath,evaluationParams['GT_SAMPLE_NAME_2_ID'])
 
     subm = rrc_evaluation_funcs.load_zip_file(submFilePath,evaluationParams['DET_SAMPLE_NAME_2_ID'],True)
-    
+    print(len(gt))
+    print(len(subm))
+    if len(gt) != len(subm):
+        print("""The number of files in the results and in the ground truth are not equal!""")
+        exit()
     #Validate format of GroundTruth
     for k in gt:
         rrc_evaluation_funcs.validate_lines_in_file(k,gt[k],evaluationParams['GT_CRLF'],evaluationParams['GT_LTRB'],True)
@@ -378,8 +382,17 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                 detTrans.append(transcription)
                 
             evaluationLog += "DET polygons: " + str(len(detPols))
-            
+            # Check blank trong các file. Bị bug là submit toàn bộ file rỗng thì cer=0 (best)
+            # ĐÃ SỬA!!!
+            if len(detPols) == 0:
+                gt_Care_bbox = 0 
+                for gtNum in range(len(gtPols)):
+                    if (gtNum not in gtDontCarePolsNum):
+                        gt_Care_bbox += 1
+                cerAccum = gt_Care_bbox
             if len(gtPols)>0 and len(detPols)>0:
+                # import pdb;
+                # pdb.set_trace()
                 #Calculate IoU and precision matrixs
                 outputShape=[len(gtPols),len(detPols)]
                 recallMat = np.empty(outputShape)
@@ -419,6 +432,8 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                             and detNum not in detDontCarePolsNum
                         ):
                             if iouMat[gtNum, detNum] > evaluationParams["IOU_CONSTRAINT"]:
+                                # import pdb;
+                                # pdb.set_trace()
                                 match_bbox_count += 1 #update
                                 gtRectMat[gtNum] = 1  # update
                                 detRectMat[detNum] = 1 # update
@@ -428,7 +443,11 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                                 # cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
                                 cerAccum += cer(gtTrans[gtNum], detTrans[detNum]) #update
                 # update
+                # import pdb;
+                # pdb.set_trace()
                 if gt_Care_bbox > match_bbox_count:
+                    # import pdb;
+                    # pdb.set_trace()
                     cerAccum += (gt_Care_bbox - match_bbox_count)
                 # Find detection Don't Care
                 if len(gtDontCarePolsNum)>0 :
