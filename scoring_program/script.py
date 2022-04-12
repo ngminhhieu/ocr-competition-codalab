@@ -432,22 +432,12 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                             and detNum not in detDontCarePolsNum
                         ):
                             if iouMat[gtNum, detNum] > evaluationParams["IOU_CONSTRAINT"]:
-                                # import pdb;
-                                # pdb.set_trace()
                                 match_bbox_count += 1 #update
                                 gtRectMat[gtNum] = 1  # update
                                 detRectMat[detNum] = 1 # update
-                                # print(gtTrans[gtNum], " ", detTrans[detNum])
-                                # print(lstn.distance(gtTrans[gtNum], detTrans[detNum]))
-                                # print(cer(gtTrans[gtNum], detTrans[detNum]))
-                                # cerAccum += cer([gtTrans[gtNum]], [detTrans[detNum]])
-                                cerAccum += cer(gtTrans[gtNum], detTrans[detNum]) #update
+                                cerAccum += cer(detTrans[detNum], gtTrans[gtNum]) #update
                 # update
-                # import pdb;
-                # pdb.set_trace()
                 if gt_Care_bbox > match_bbox_count:
-                    # import pdb;
-                    # pdb.set_trace()
                     cerAccum += (gt_Care_bbox - match_bbox_count)
                 # Find detection Don't Care
                 if len(gtDontCarePolsNum)>0 :

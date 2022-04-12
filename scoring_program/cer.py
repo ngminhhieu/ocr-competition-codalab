@@ -6,16 +6,16 @@ def install(package):
 install("python-Levenshtein")
 import Levenshtein as lstn
 
-def cer(gt, prediction):
+def cer(prediction, gt):
     cer_s, cer_i, cer_d, cer_n = 0, 0, 0, 0.
 
-    arr = lstn.editops(gt, prediction) # update
+    arr = lstn.editops(prediction, gt) # update
     for item in arr:
         if item[0] == 'insert':
             cer_i += 1
         elif item[0] == 'delete':
             cer_d += 1
-        else:
+        elif item[0] == 'replace':
             cer_s += 1
     cer_n = len(gt)
     return (cer_s + cer_i + cer_d) / cer_n
